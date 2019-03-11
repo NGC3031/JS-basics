@@ -1,0 +1,38 @@
+<!--Simple J to convert centigrade to Farenheight a bit of a weird way to do it but it does let students play with arrays-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Centigrade to Farenheight</title>
+</head>
+
+<body>
+    <script>
+        function convertToCentigrade(degFahren) {
+            var degCent = 5 / 9 * (degFahren - 32);
+
+            return degCent.toFixed(2);
+        }
+
+        var degFahren = [];
+        var degCent = [];
+        var loopCounter;
+        // Fill array with Farenheight temps    
+        for (loopCounter = 0; loopCounter <= 200; loopCounter++) {
+            degFahren[loopCounter] = loopCounter;
+            degCent[loopCounter] = convertToCentigrade(loopCounter);
+        }
+
+        for (loopCounter = 0; loopCounter <= 200; loopCounter++) {
+            document.write(" " + degFahren[loopCounter] +
+                " degrees Fahrenheit");
+
+            document.write(" which is " + degCent[loopCounter] +
+                " degrees centigrade<br />");
+        }
+    </script>
+</body>
+
+</html>

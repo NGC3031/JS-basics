@@ -1,0 +1,28 @@
+<!--Simple code to draw to HTML5 canvas-->
+<html>
+
+<head>
+    <title>Smile</title>
+    <script>
+        function init() {
+            var ctx = document.getElementById("canvas").getContext('2d');
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(200,0,0)";
+            ctx.arc(200, 200, 50, 0, 3 / 4 * Math.PI, true);
+            ctx.fillStyle = "rgb(200,0,200)";
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = "rgb(255,0,0)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+    </script>
+</head>
+
+<body onLoad="init();">
+    <canvas id="canvas" width="400" height="300">
+        Your browser doesn't support the HTML5 element canvas.
+    </canvas>
+</body>
+
+</html>

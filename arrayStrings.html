@@ -1,0 +1,51 @@
+<!--Manipulating arrays-->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Array and string example</title>
+</head>
+
+<body>
+    <script>
+        var birdArray = ["Parrot", "Crow", "Cockatoo", "Finch", "Robin"];
+        //Add a bird with pop
+        birdArray.push("Magpie");
+
+        var ord = prompt("Enter 1 for alphabetical order, " +
+            "and -1 for reverse order", 1);
+
+        if (ord == 1) {
+            birdArray.sort();
+            document.write(birdArray.join("<br />"));
+        } else if (ord == -1) {
+            birdArray.sort();
+            birdArray.reverse();
+            document.write(birdArray.join("<br />"));
+        } else {
+            document.write("That is not a valid input");
+        }
+        //convert array to string
+        var birdString = birdArray.toString();
+        document.write("<br />" + birdString);
+        //count number of birds
+        var birdCount = birdArray.length;
+        document.write("<br />The number of birds in the array is : " + birdCount);
+        //print the birdArray again
+        document.write("<br />" + birdArray);
+        //pop array
+        birdArray.pop();
+        document.write("<br />" + birdArray);
+        //sort it again
+        birdArray.reverse();
+        //print sorted array
+        document.write("<br />" + birdArray);
+        //pop array
+        birdArray.pop();
+        //have a look again
+        document.write("<br />" + birdArray);
+    </script>
+</body>
+
+</html>

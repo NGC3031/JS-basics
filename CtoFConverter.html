@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--Demo of Javascript weird functions, passing the function name as a parameter which is sort of cool. Point is functions are values in Javascript-->
+<html lang="en">
+
+<head>
+    <title>CtoF using variable as function name</title>
+</head>
+
+<body>
+    <script>
+        //converts to centigrade
+        function toCentigrade(degFahren) {
+            var degCent = 5 / 9 * (degFahren - 32);
+
+            document.write(degFahren + " Fahrenheit is " +
+                degCent.toFixed(2) + " Celsius.<br/>");
+        }
+        // converts to Farenheight
+        function toFahrenheit(degCent) {
+            var degFahren = 9 / 5 * degCent + 32;
+
+            document.write(degCent + " Celsius is " +
+                degFahren.toFixed(2) + " Fahrenheit.<br/>");
+        }
+        // passing in the function name and the value to convert
+        function convert(converter, temperature) {
+            converter(temperature);
+        }
+
+        convert(toFahrenheit, 23);
+        convert(toCentigrade, 75);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!--Finding the substring in string-->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Finding substring occurances</title>
+</head>
+
+<body>
+    <script>
+        var needle = "fox";
+        var myString = "The quick brown fox jumped over the log ";
+        var foundAtPosition = 0;
+        var needleCount = 0;
+
+        while (foundAtPosition != -1) {
+            foundAtPosition = myString.indexOf(needle, foundAtPosition);
+
+            if (foundAtPosition != -1) {
+                needleCount++;
+                foundAtPosition++;
+            }
+        }
+
+        document.write("There are " + needleCount + " occurrences of the word " + needle);
+    </script>
+</body>
+
+</html>
