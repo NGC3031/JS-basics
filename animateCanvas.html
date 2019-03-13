@@ -1,0 +1,52 @@
+<!--Demo code for basic canvas effects-->
+<html>
+
+<head>
+    <title>Animate Canvas Demo</title>
+    <script>
+    </script>
+</head>
+<style "text/css">
+    body {
+        margin: 0;
+    }
+
+    canvas {
+        background: white;
+        color: aqua;
+        border: 1px solid red;
+    }
+</style>
+
+<body>
+    <canvas id="canvas" width="500" height="500">
+        Your browser doesn't support the HTML5 element canvas.
+    </canvas>
+    <script>
+        var canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        //get the handle to the canvas through context
+        var ctx = canvas.getContext('2d');
+
+        var x = 200;
+        var dx = 10;
+        var radius = 40;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            ctx.beginPath();
+            ctx.arc(x, 300, radius, 0, Math.PI * 2, false);
+            ctx.strokeStyle = 'blue';
+            ctx.stroke();
+            if ((x - radius) < 0 || (x + radius) > innerWidth) dx = -dx; //combined if statements
+            //if (x < 0) dx = -dx; // negative negative
+            x += dx;
+        }
+        animate();
+    </script>
+</body>
+
+</html>
