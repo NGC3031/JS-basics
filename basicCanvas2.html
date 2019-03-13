@@ -31,45 +31,15 @@
         //get the handle to the canvas through context
         var ctx = canvas.getContext('2d');
 
-        // draw a simple rectangle NB x2 cord is 100+200=300 etc
-        ctx.fillRect(100, 100, 200, 200);
-
-        // draw a line
-        // Begin path to reset the path
-        ctx.beginPath();
-        //intial point
-        ctx.moveTo(10, 10);
-        // draw line to final point
-        ctx.lineTo(350, 350);
-        //actually draw the line
-        ctx.stroke();
-        //now if we draw another line...
-        ctx.lineTo(600, 250);
-        ctx.stroke();
-        // starts at end of previous line
-        //so beginPath() to reset
-        ctx.beginPath();
-        ctx.moveTo(10, 600);
-        ctx.lineTo(500, 300);
-        ctx.stroke();
-
-        //draw a colored rectangle
-        ctx.fillStyle = 'rgba(255, 0, 255, 0.5)';
-        ctx.fillRect(300, 400, 200, 200);
-
-        //draw a colored line - notice color change goes back to beginPath()
-        ctx.strokeStyle = "#ffff00";
-        ctx.moveTo(650, 650);
-        ctx.lineTo(70, 500);
-        ctx.stroke();
-
-        //draw a fat red line - notice color change goes back to beginPath()
-        ctx.beginPath();
-        ctx.strokeStyle = "#ff0000";
-        ctx.lineWidth = 6;
-        ctx.moveTo(600, 600);
-        ctx.lineTo(170, 500);
-        ctx.stroke();
+        var i;
+        for (i = 0; i < 100; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = "#ff0000";
+            ctx.lineWidth = 2;
+            ctx.moveTo(600, 600 - (i * 5));
+            ctx.lineTo(170 + (5 * i), 500);
+            ctx.stroke();
+        }
     </script>
 </body>
 
