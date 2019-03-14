@@ -32,7 +32,7 @@
 
         var x = 200;
         var y = 200;
-        var dx = 15;
+        var dx = 5;
         var dy = 5;
         var radius = 20;
 
@@ -40,7 +40,9 @@
             requestAnimationFrame(animate);
             ctx.clearRect(0, 0, innerWidth, innerHeight);
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
             ctx.strokeStyle = 'red';
             ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
             ctx.fill();
@@ -50,6 +52,7 @@
             if ((y - radius) < 0 || (y + radius) > innerHeight) dy = -dy;
             x += dx;
             y += dy;
+            ctx.restore();
             //ctx.clearRect(0, 0, innerWidth, innerHeight);
         }
         animate();
