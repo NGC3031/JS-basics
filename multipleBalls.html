@@ -1,4 +1,4 @@
-<!--Demo code for basic canvas and multiple balls -->
+<!--Demo code for basic canvas and multiple balls- could add collision detection -->
 <html>
 
 <head>
@@ -63,7 +63,6 @@
             var green = Math.floor(Math.random() * 255);
             var alpha = Math.floor(Math.random() * 255);
             balls.push(new Ball(i, x, y, dx, 1, r, red, blue, green, alpha));
-            console.log(balls[i].x);
         }
 
         function frame() {
