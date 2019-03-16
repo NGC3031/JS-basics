@@ -1,0 +1,30 @@
+<!--create a number of different balls-->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>100 Balls</title>
+</head>
+
+<body>
+    <script>
+        var balls = [];
+
+        function Ball(number, xPos, yPos, deltaX, deltaY) {
+            this.n = number;
+            this.x = xPos;
+            this.y = yPos;
+            this.dx = deltaX;
+            this.dy = deltaY;
+        }
+
+        // Create 100 balls
+        for (var i = 0; i < 100; i++) {
+            balls.push(new Ball(i, 10 + i, 10, 1, 1));
+            console.log(balls[i].x);
+        }
+    </script>
+</body>
+
+</html>
