@@ -32,22 +32,37 @@
 
         var x = 200;
         var y = 200;
-        var dx = 1;
-        var dy = 1;
+        var dx = 5;
+        var dy = 5;
         var radius = 20;
         var balls = [];
+        var maxRadius = 30;
 
-        function Ball(number, xPos, yPos, deltaX, deltaY) {
+        function Ball(number, xPos, yPos, deltaX, deltaY, radius, r, g, b, a) {
             this.n = number;
             this.x = xPos;
             this.y = yPos;
             this.dx = deltaX;
             this.dy = deltaY;
+            this.r = radius;
+            this.red = r;
+            this.green = g;
+            this.blue = b;
+            this.alpha = a;
         }
 
         // Create 100 balls
         for (var i = 0; i < 100; i++) {
-            balls.push(new Ball(i, 10 + i, 10, 1, 1));
+            var x = Math.floor((Math.random() * window.innerWidth - maxRadius) + maxRadius);
+            var y = Math.floor((Math.random() * window.innerHeight - maxRadius) + maxRadius);
+            var dx = Math.floor((Math.random() * 5) + 1);
+            var dy = Math.floor((Math.random() * 5) + 1);
+            var r = Math.floor((Math.random() * maxRadius) + 5);
+            var red = Math.floor(Math.random() * 255);
+            var blue = Math.floor(Math.random() * 255);
+            var green = Math.floor(Math.random() * 255);
+            var alpha = Math.floor(Math.random() * 255);
+            balls.push(new Ball(i, x, y, dx, 1, r, red, blue, green, alpha));
             console.log(balls[i].x);
         }
 
@@ -58,20 +73,31 @@
         }
 
         function update() {
-            x += dx;
-            y += dy;
-            if ((x - radius) < 0 || (x + radius) > window.innerWidth) dx = -dx;
-            if ((y - radius) < 0 || (y + radius) > window.innerHeight) dy = -dy;
+            for (var i = 0; i < 100; i++) {
+                balls[i].x += balls[i].dx;
+                balls[i].y += balls[i].dy;
+                if ((balls[i].x - balls[i].r) < 0 || (balls[i].x + balls[i].r) > window.innerWidth) balls[i].dx = -
+                    balls[i].dx;
+                if ((balls[i].y - balls[i].r) < 0 || (balls[i].y + balls[i].r) > window.innerHeight) balls[i].dy = -
+                    balls[i].dy;
+            }
         }
 
         function draw() {
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-            ctx.strokeStyle = 'red';
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
-            ctx.fill();
-            ctx.stroke();
+            //ctx.strokeStyle = 'red';
+            //ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
+            for (var i = 0; i < 100; i++) {
+                ctx.beginPath();
+                ctx.arc(balls[i].x, balls[i].y, balls[i].r, 0, Math.PI * 2, false);
+                ctx.strokeStyle = 'red';
+                ctx.fillStyle = 'rgba(' + balls[i].red + ', ' + balls[i].green + ', ' + balls[i].blue + ', ' + balls[i]
+                    .alpha + ')';
+                ctx.fill();
+                ctx.stroke();
+                //console.log(balls[i].x);
+            }
         }
         requestAnimationFrame(frame);
     </script>
