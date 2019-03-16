@@ -1,4 +1,4 @@
-<!--Demo code for basic canvas animation -->
+<!--Demo code for basic canvas animation. Added draw and update fns -->
 <html>
 
 <head>
@@ -12,7 +12,7 @@
     }
 
     canvas {
-        background: white;
+        background: black;
         color: aqua;
         border: 1px solid red;
     }
@@ -24,8 +24,6 @@
     </canvas>
     <script>
         var canvas = document.querySelector('canvas');
-        var date = new Date();
-        var timestamp = date.getTime();
         var previous = 0.0;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -35,28 +33,42 @@
 
         var x = 200;
         var y = 200;
-        var dx = 15;
-        var dy = 5;
-        var radius = 20;
+        var dx = 1;
+        var dy = 1;
+        var radius = 50;
+        var frameRate = 1;
+        var fpsInterval = 0;
+        var now = 0;
+        var then = 0;
+        var elapsed = 0;
+
+        fpsInterval = 1000 / frameRate;
 
         function frame() {
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            if (!previous) previous = timestamp;
-            elapsed = timestamp - previous;
-            update(elapsed / 1000);
-            draw(ctx, true);
-            previous = timestamp;
-            window.requestAnimationFrame(frame);
+            //ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            //var now = Date.now();
+            //elapsed = now - then;
+            update();
+            //if (now > then + frameRate) {
+            // update();
+            //    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            //console.log(x);
+            //then = now;
+            draw();
+            //}
+            //requestAnimationFrame(frame);
         }
 
         function update() {
             x += dx;
             y += dy;
-            if ((x - radius) < 0 || (x + radius) > innerWidth) dx = -dx;
-            if ((y - radius) < 0 || (y + radius) > innerHeight) dy = -dy;
+            if ((x - radius) < 0 || (x + radius) > window.innerWidth) dx = -dx;
+            if ((y - radius) < 0 || (y + radius) > window.innerHeight) dy = -dy;
         }
 
-        function draw(c) {
+        function draw() {
+            requestAnimationFrame(frame);
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2, false);
             ctx.strokeStyle = 'red';
