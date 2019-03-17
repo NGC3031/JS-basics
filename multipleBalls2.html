@@ -1,4 +1,5 @@
 <!--Demo code for basic canvas and multiple balls- could add collision detection -->
+<!--Added in basic collision detection. Need to finish off-->
 <html>
 
 <head>
@@ -35,8 +36,10 @@
         var dx = 5;
         var dy = 5;
         var radius = 20;
-        var balls = [];
         var maxRadius = 30;
+        var ballCount = 10;
+
+        var balls = [];
 
         function Ball(number, xPos, yPos, deltaX, deltaY, radius, r, g, b, a) {
             this.n = number;
@@ -51,10 +54,10 @@
             this.alpha = a;
         }
 
-        // Create 100 balls
-        for (var i = 0; i < 100; i++) {
-            var x = Math.floor((Math.random() * window.innerWidth - maxRadius) + maxRadius);
-            var y = Math.floor((Math.random() * window.innerHeight - maxRadius) + maxRadius);
+        // Create n balls
+        for (var i = 0; i < ballCount; i++) {
+            var x = Math.floor((Math.random() * (window.innerWidth - 2 * maxRadius)) + 2 * maxRadius);
+            var y = Math.floor((Math.random() * (window.innerHeight - 2 * maxRadius)) + 2 * maxRadius);
             //for fun random +- directions
             var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
             var dx = Math.floor((Math.random() * 5) + 1) * plusOrMinus;
@@ -73,31 +76,54 @@
             requestAnimationFrame(frame);
         }
 
+        function checkCollision(ballNumber) {
+            var x1 = balls[ballNumber].x;
+            var y1 = balls[ballNumber].y;
+            var r1 = balls[ballNumber].r;
+            //check the distance between centres
+            for (var i = 0; i < ballCount; i++) {
+                var x2 = balls[i].x;
+                var y2 = balls[i].y;
+                var r2 = balls[i].r;
+                // eqn is distance between 2 points
+                var D = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+                if (D < (Math.sqrt(Math.pow(2 * (r2 - r1), 2)))) return true; //one is inside the other, the math is th absolute value between r1 and r2
+                //if (D == 0 && r1 == r2) return true; //they are coincident - need to account for this because intial start is random position    
+            }
+            return false;
+        }
+
         function update() {
-            for (var i = 0; i < 100; i++) {
+            var collide = false;
+            for (var i = 0; i < ballCount; i++) {
                 balls[i].x += balls[i].dx;
                 balls[i].y += balls[i].dy;
-                if ((balls[i].x - balls[i].r) < 0 || (balls[i].x + balls[i].r) > window.innerWidth) balls[i].dx = -
-                    balls[i].dx;
-                if ((balls[i].y - balls[i].r) < 0 || (balls[i].y + balls[i].r) > window.innerHeight) balls[i].dy = -
-                    balls[i].dy;
+                // check for collision
+                collide = checkCollision(i);
+                //console.log(collide);
+                // check for walls
+                if ((balls[i].x - balls[i].r) < 0 || (balls[i].x + balls[i].r) > window.innerWidth) collide = true;
+                if ((balls[i].y - balls[i].r) < 0 || (balls[i].y + balls[i].r) > window.innerHeight) collide = true;
+
+                if (collide) {
+                    balls[i].dx = -balls[i].dx;
+                    balls[i].dy = -balls[i].dy;
+                }
             }
         }
 
         function draw() {
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.beginPath();
-            //ctx.strokeStyle = 'red';
-            //ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
-            for (var i = 0; i < 100; i++) {
+            for (var i = 0; i < ballCount; i++) {
                 ctx.beginPath();
                 ctx.arc(balls[i].x, balls[i].y, balls[i].r, 0, Math.PI * 2, false);
                 ctx.strokeStyle = 'red';
-                ctx.fillStyle = 'rgba(' + balls[i].red + ', ' + balls[i].green + ', ' + balls[i].blue + ', ' + balls[i]
+                ctx.fillStyle = 'rgba(' + balls[i].red + ', ' + balls[i].green + ', ' + balls[i].blue + ', ' +
+                    balls[i]
                     .alpha + ')';
                 ctx.fill();
                 ctx.stroke();
-                //console.log(balls[i].x);
             }
         }
         requestAnimationFrame(frame);
