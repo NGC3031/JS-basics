@@ -1,26 +1,32 @@
 // Javascript using Immediatel Invoked Dunction Expression IIFE "iffy"
 // useful to hide variables without polluting the global scope by creating lots of declared functions
 
-var a = 1;
+//A sequence counter
+var Sequence = (function sequenceIIFE() {
 
-//declared as a function expression not a declaration
-(function foo() {
-    var a = 2;
-    console.log(a);
-})();
+    // Private variable to store current counter value.
+    var current = 0;
 
-console.log(a);
+    // Object that's returned from the IIFE.
+    return {
+        getCurrentValue: function () {
+            return current;
+        },
 
-//returning a value from an iffy function
-var result = (function () {
-    return "Iffy return";
-}())
+        getNextValue: function () {
+            current = current + 1;
+            return current;
+        },
 
-console.log(result);
+        getPreviousValue: function () {
+            current = current - 1;
+            return current;
+        }
+    };
 
-// passing parameters to an iffy function
-(function IIFE(msg, times) {
-    for (var i = 1; i <= times; i++) {
-        console.log(msg);
-    }
-}("Hello", 5));
+}());
+
+console.log(Sequence.getNextValue()); // 1
+console.log(Sequence.getNextValue()); // 2
+console.log(Sequence.getCurrentValue()); // 2
+console.log(Sequence.getPreviousValue()); // 1
