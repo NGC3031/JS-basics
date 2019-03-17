@@ -13,7 +13,7 @@
     }
 
     canvas {
-        background: white;
+        background: black;
         color: aqua;
         border: 1px solid red;
     }
@@ -37,7 +37,7 @@
         var dy = 5;
         var radius = 20;
         var maxRadius = 30;
-        var ballCount = 50;
+        var ballCount = 500;
 
         var balls = [];
 
@@ -87,8 +87,11 @@
                 var r2 = balls[i].r;
                 // eqn is distance between 2 points
                 var D = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
-                if (D < (Math.sqrt(Math.pow(2 * (r2 - r1), 2)))) return true; //one is inside the other, the math is th absolute value between r1 and r2
+                //if (D < (Math.sqrt(Math.pow(2 * (r2 - r1), 2)))) return true; //one is inside the other, the math is th absolute value between r1 and r2
                 //if (D == 0 && r1 == r2) return true; //they are coincident - need to account for this because intial start is random position    
+                //console.log(Math.round(D));
+                //console.log(r1);
+                if (Math.round(D) == (r1 + r2)) return true;
             }
             return false;
         }
@@ -109,9 +112,9 @@
                     balls[i].dx = -balls[i].dx;
                     balls[i].dy = -balls[i].dy;
                 }
-                var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-                balls[i].dx = balls[i].dx + (Math.random() * plusOrMinus * 0.1);
-                balls[i].dy = balls[i].dy + (Math.random() * plusOrMinus * 0.1);
+                //var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+                //balls[i].dx = balls[i].dx + (Math.random() * plusOrMinus * 0.1);
+                //balls[i].dy = balls[i].dy + (Math.random() * plusOrMinus * 0.1);
                 balls[i].x += balls[i].dx;
                 balls[i].y += balls[i].dy;
 
