@@ -13,3 +13,13 @@ me();
 function me() {
     console.log('Hello me');
 }
+
+//function expressions are not hoisted
+
+//functionHoist(); //this will generate 'Not a function error'
+
+var functionHoist = function () {
+    console.log("functionHoist");
+};
+
+functionHoist(); // works fine
