@@ -1,4 +1,4 @@
-//ternary if operator
+//Ternary if operator
 
 //standard way
 var pet = 'cat';
@@ -12,3 +12,6 @@ if (pet == 'cat') {
 //way to make your code unreadable to colleagues
 var result = (pet === 'cat') ? 'meow' : 'woof';
 console.log(result);
+
+//way to completely trash a codebase - have fun
+var result = pet === 'cat' ? pet.length == 3 ? 'mmeow' : 'meooow' : 'meeeeowwww';
