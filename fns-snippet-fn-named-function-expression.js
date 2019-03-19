@@ -4,7 +4,7 @@
 var chat = console.log;
 chat("Howdy");
 
-//or more standard
+//or more standard anonymous function
 chat = function () {
     console.log("Howdy");
 };
@@ -25,3 +25,10 @@ chat = function biteMe() {
 console.log(chat());
 //May or not work - used to work in explorer because you created two variables now
 //console.log(biteMe());
+
+//invoked function
+var multiply = function (n, m) {
+    return n * m;
+}
+var mult = multiply;
+console.log(mult(3, 2));
