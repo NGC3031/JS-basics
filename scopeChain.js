@@ -12,22 +12,6 @@ function outside() {
     }
     return inside();
 }
+//essentially fn outside is dead - but lives on because it sent back fn inside
+//wooo closure
 console.log(outside());
-
-
-
-
-var a = 'a';
-//now using anonymous function expressions to break the scope chain
-var f1 = function () {
-    var b = 'b';
-    var f2 = function () {
-        var c = 'c';
-        return b;
-    }
-    return f2;
-}
-
-//console.log(b); // b is not defined
-f1();
-console.log(f1);
