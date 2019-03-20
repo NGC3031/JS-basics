@@ -1,4 +1,5 @@
 // cool iterator snippet 
+// notice var i retains its value
 
 function iterator(x) {
     var i = 0;
@@ -10,4 +11,7 @@ function iterator(x) {
 var next = iterator(['bob', 'joe', 'bill'])
 
 console.log(next());
+console.log(next());
+console.log(next());
+//undefined
 console.log(next());
