@@ -48,7 +48,7 @@ function first2(callback) {
     }, 500);
 }
 
-//now the problem is second1 never gets called what about passing second as a parameter
+//what about passing second as a parameter
 //so we have have passed a function as an argument and then executed it inside the second function
 first2(function second2() {
     console.log(2);
