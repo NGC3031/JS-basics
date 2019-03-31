@@ -1,0 +1,73 @@
+<!--Demo code for starfield effect-->
+<html>
+<meta charset="UTF-8">
+
+<head>
+    <title>Starfield Demo</title>
+    <script>
+    </script>
+</head>
+<style "text/css">
+    body {
+        margin: 0;
+    }
+
+    canvas {
+        background: black;
+        color: aqua;
+        border: 1px solid red;
+    }
+</style>
+
+<body>
+    <canvas id="canvas" width="500" height="500">
+        Your browser doesn't support the HTML5 element canvas.
+    </canvas>
+    <script>
+        var canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        //get the handle to the canvas through context
+        var ctx = canvas.getContext('2d');
+        var starCount = 200;
+        var stars = [];
+
+        function frame() {
+            update();
+            requestAnimationFrame(frame);
+        }
+
+        function update() {
+            if (stars.length < starCount && Math.random() < 0.25) {
+                var star = {
+                    x: 0,
+                    y: 0,
+                    vx: -5 + Math.random() * 10,
+                    vy: -5 + Math.random() * 10
+                }
+                stars.push(star);
+            }
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+            for (let n = 0; n < stars.length; n++) { // for each star
+                stars[n].x = stars[n].x + stars[n].vx; // add the velocity to the current position
+                stars[n].y = stars[n].y + stars[n].vy; // in both axles
+                if (stars[n].x > window.innerWidth / 2 || stars[n].x < -window.innerWidth /
+                    2) { // if the star is out of bounds
+                    stars[n].x = 0; // put it back in the center
+                    stars[n].y = 0;
+                }
+                color = Math.floor((Math.abs(stars[n].x) + Math.abs(stars[n].y)) / 5);
+                ctx.fillStyle = 'yellow';
+                ctx.beginPath();
+                ctx.arc((window.innerWidth / 2) + stars[n].x, (window.innerHeight / 2) + stars[n].y, Math.abs(stars[n]
+                    .y / 100 + n / 200), 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+        requestAnimationFrame(frame);
+    </script>
+</body>
+
+</html>
