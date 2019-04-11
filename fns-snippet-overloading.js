@@ -1,7 +1,8 @@
 // Simulating overloading
 // Javascript functions can accept any number of parameters through the
 // arguments object which also means they have no function signatures
-// Work arounds for function overloading
+// Work arounds for function overloading. Checking against undefined is
+// more standard.
 
 function simOverload(msg) {
     if (arguments.length === 0) {
