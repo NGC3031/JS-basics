@@ -1,5 +1,10 @@
-//displays unicode characters
+//displays unicode 12.0 characters 137993
 
-for (var i = 0; i < 65000; i++) {
-    console.log(String.fromCharCode(i));
+var arr = [];
+
+for (var i = 0; i <= 137993; i++) {
+    arr.push(String.fromCharCode(i));
+    //console.log(String.fromCharCode(i));
 }
+
+console.log(arr.toString());

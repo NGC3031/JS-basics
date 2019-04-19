@@ -1,4 +1,4 @@
-// Javascript using Immediatel Invoked Dunction Expression IIFE "iffy"
+// Javascript using Immediately Invoked Function Expression IIFE "iffy"
 // useful to hide variables without polluting the global scope by creating lots of declared functions
 
 var a = 1;
