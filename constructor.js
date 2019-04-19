@@ -1,3 +1,4 @@
+//Simple JS Object with constuctor
 function Fish(type) {
     this.type = type;
 }
