@@ -1,3 +1,5 @@
+// A basic constructor function
+
 function createNewDog(name) {
     var obj = {};
     obj.name = name;
